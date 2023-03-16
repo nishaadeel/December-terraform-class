@@ -9,11 +9,11 @@ resource "aws_iam_user" "firstuser" {
 
 
 resource "aws_iam_group" "multigroup" {
-    for_each = toset([
-        "sales",
-        "marketing",
-        "develop",
-    ])
+  for_each = toset([
+    "sales",
+    "marketing",
+    "develop",
+  ])
   name = each.key
 }
 
