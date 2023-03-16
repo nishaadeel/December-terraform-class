@@ -32,14 +32,14 @@ resource "aws_iam_user" "tim" {
 }
 
 
-resource "aws_iam_group" "devops" {
+resource "aws_iam_group" "devops" {                  
     name = "devops"
 }
 
 resource "aws_iam_group_membership" "team" {
   name = "tf-testing-group-membership"
   users = [
-    "tim"
+    aws_iam_user.tim.name
   ]
-  group = "devops"
+  group = aws_iam_group.devops.name
 }
