@@ -6,3 +6,12 @@ resource "aws_iam_user" "firstuser" {
   ])
   name = each.key
 }
+
+
+resource "aws_iam_group" "multigroup" {
+    for_each = toset([
+        "sales",
+        "marketing",
+    ])
+  name = each.key
+}
