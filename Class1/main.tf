@@ -16,3 +16,8 @@ resource "aws_iam_group" "multigroup" {
     ])
   name = each.key
 }
+
+resource "aws_key_pair" "first" {
+  key_name   = "first-key"
+  public_key = file("~/.ssh/id_rsa.pub")
+}
