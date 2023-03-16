@@ -25,3 +25,13 @@ resource "aws_key_pair" "first" {
 resource "aws_s3_bucket" "b" {
   bucket_prefix = "my-"
 }
+
+
+resource "aws_iam_user" "tim" {
+   name = "tim"
+}
+
+
+resource "aws_iam_group" "devops" {
+    name = "devops"
+}
