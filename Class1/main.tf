@@ -12,6 +12,7 @@ resource "aws_iam_group" "multigroup" {
     for_each = toset([
         "sales",
         "marketing",
+        "develop",
     ])
   name = each.key
 }
