@@ -62,3 +62,16 @@ resource "aws_volume_attachment" "class2" {
   volume_id   = aws_ebs_volume.class2.id
   instance_id = aws_instance.web.id
 }
+
+
+# creates DNS Record
+resource "aws_route53_record" "class2" {
+  zone_id = var.zone_id
+  name    = "blog.${var.domain}"
+  type    = "A"
+  ttl     = 300
+  records = [aws_instance.web.public_ip]
+}
+
+variable zone_id {}
+variable domain {}
