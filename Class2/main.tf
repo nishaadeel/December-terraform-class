@@ -4,7 +4,6 @@ resource "aws_key_pair" "class2" {
   public_key = file("~/.ssh/id_rsa.pub")
 }
 
-
 # creates sec group
 resource "aws_security_group" "class2" {
   name        = "class2"
@@ -75,6 +74,15 @@ resource "aws_instance" "web2" {
     aws_security_group.class2.id,
   ]
 }
+
+# terraform import aws_instance.mine    i-0efeb1db621f7809d
+resource "aws_instance" "mine" {
+  ami = "ami-02f3f602d23f1659d"
+  instance_type = "t3.micro"
+}
+
+
+
 
 # # attaches volume to an instance
 # resource "aws_volume_attachment" "class2" {
