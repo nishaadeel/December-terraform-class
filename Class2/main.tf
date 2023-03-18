@@ -54,11 +54,17 @@ resource "aws_instance" "web" {
   ]
 }
 
-
-output all_info {
-    value = aws_instance.web
+# creates ec2 instance
+resource "aws_instance" "web2" {
+  ami                         = "ami-02f3f602d23f1659d"
+  instance_type               = "t3.micro"
+  associate_public_ip_address = true
+  availability_zone           = "us-east-1a"
+  key_name                    = aws_key_pair.class2.key_name
+  vpc_security_group_ids = [
+    aws_security_group.class2.id,
+  ]
 }
-
 
 # # attaches volume to an instance
 # resource "aws_volume_attachment" "class2" {
