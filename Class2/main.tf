@@ -11,25 +11,25 @@ resource "aws_security_group" "class2" {
   description = "Allow TLS inbound traffic"
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "TLS from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "TLS from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
     from_port        = 0
     to_port          = 0
-    protocol         = "-1" 
+    protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
@@ -44,14 +44,14 @@ resource "aws_ebs_volume" "class2" {
 
 # creates ec2 instance
 resource "aws_instance" "web" {
-  ami           = "ami-02f3f602d23f1659d"
-  instance_type = "t3.micro"
-  associate_public_ip_address  = true
-  availability_zone = "us-east-1a"
-  key_name = aws_key_pair.class2.key_name
+  ami                         = "ami-02f3f602d23f1659d"
+  instance_type               = "t3.micro"
+  associate_public_ip_address = true
+  availability_zone           = "us-east-1a"
+  key_name                    = aws_key_pair.class2.key_name
   vpc_security_group_ids = [
     aws_security_group.class2.id,
-    ]
+  ]
 }
 
 
@@ -66,12 +66,13 @@ resource "aws_volume_attachment" "class2" {
 
 # creates DNS Record
 resource "aws_route53_record" "class2" {
-  zone_id = var.zone_id
-  name    = "blog.${var.domain}"
-  type    = "A"
-  ttl     = 300
-  records = [aws_instance.web.public_ip]
+  allow_overwrite = true
+  zone_id         = var.zone_id
+  name            = "blog.${var.domain}"
+  type            = "A"
+  ttl             = 300
+  records         = [aws_instance.web.public_ip]
 }
 
-variable zone_id {}
-variable domain {}
+variable "zone_id" {}
+variable "domain" {}
