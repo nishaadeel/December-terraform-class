@@ -64,15 +64,15 @@ resource "aws_volume_attachment" "class2" {
 }
 
 
-# creates DNS Record
-resource "aws_route53_record" "class2" {
-  allow_overwrite = true
-  zone_id         = var.zone_id
-  name            = "blog.${var.domain}"
-  type            = "A"
-  ttl             = 300
-  records         = [aws_instance.web.public_ip]
-}
+# # creates DNS Record
+# resource "aws_route53_record" "class2" {
+#   allow_overwrite = true
+#   zone_id         = var.zone_id
+#   name            = "blog.${var.domain}"
+#   type            = "A"
+#   ttl             = 300
+#   records         = [aws_instance.web.public_ip]
+# }
 
-variable "zone_id" {}
-variable "domain" {}
+# variable "zone_id" {}
+# variable "domain" {}
