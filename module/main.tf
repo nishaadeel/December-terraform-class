@@ -24,3 +24,4 @@ module "asg" {
   ebs_optimized     = false
   enable_monitoring = false
 }
+
