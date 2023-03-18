@@ -20,6 +20,15 @@ resource "aws_security_group" "class2" {
 
   ingress {
     description = "TLS from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+  ingress {
+    description = "TLS from VPC"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -49,6 +58,7 @@ resource "aws_instance" "web" {
   associate_public_ip_address = true
   availability_zone           = "us-east-1a"
   key_name                    = aws_key_pair.class2.key_name
+  user_data = file("wordpress_install.sh")
   vpc_security_group_ids = [
     aws_security_group.class2.id,
   ]
