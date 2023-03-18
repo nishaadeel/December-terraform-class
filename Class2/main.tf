@@ -4,6 +4,7 @@ resource "aws_instance" "web" {
   instance_type = "t3.micro"
   associate_public_ip_address  = true
   availability_zone = "us-east-1a"
+  key_name = aws_key_pair.class2.key_name
 }
 
 
