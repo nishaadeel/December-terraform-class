@@ -57,7 +57,7 @@ resource "aws_instance" "web" {
   associate_public_ip_address = true
   availability_zone           = "us-east-1a"
   key_name                    = aws_key_pair.class2.key_name
-  user_data = file("wordpress_install.sh")
+  # user_data = file("wordpress_install.sh")
   vpc_security_group_ids = [
     aws_security_group.class2.id,
   ]
