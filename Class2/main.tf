@@ -35,6 +35,12 @@ resource "aws_security_group" "class2" {
   }
 }
 
+# creates an EBS Volume 
+resource "aws_ebs_volume" "class2" {
+  availability_zone = "us-east-1a"
+  size              = 40
+}
+
 
 # creates ec2 instance
 resource "aws_instance" "web" {
