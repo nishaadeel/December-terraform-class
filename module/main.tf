@@ -4,14 +4,14 @@
 #     # source = terraform registry
 # }
 
-
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
+  version = "6.9.0"
   # Autoscaling group
   name = "example-asg"
-  min_size                  = 0
-  max_size                  = 1
-  desired_capacity          = 1
+  min_size                  = 3
+  max_size                  = 99
+  desired_capacity          = 5
   wait_for_capacity_timeout = 0
   health_check_type         = "EC2"
   availability_zones       = ["us-east-1a","us-east-1b"]
@@ -25,3 +25,11 @@ module "asg" {
   enable_monitoring = false
 }
 
+output all_info {
+  value =  module.asg.autoscaling_group_arn
+}
+
+
+output azs {
+  value =  module.asg.autoscaling_group_availability_zones
+}
