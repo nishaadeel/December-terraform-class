@@ -55,13 +55,17 @@ resource "aws_instance" "web" {
 }
 
 
-
-# attaches volume to an instance
-resource "aws_volume_attachment" "class2" {
-  device_name = "/dev/sdb"
-  volume_id   = aws_ebs_volume.class2.id
-  instance_id = aws_instance.web.id
+output all_info {
+    value = aws_instance.web
 }
+
+
+# # attaches volume to an instance
+# resource "aws_volume_attachment" "class2" {
+#   device_name = "/dev/sdb"
+#   volume_id   = aws_ebs_volume.class2.id
+#   instance_id = aws_instance.web.id
+# }
 
 
 # # creates DNS Record
