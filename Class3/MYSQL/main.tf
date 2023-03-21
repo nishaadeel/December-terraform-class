@@ -4,10 +4,10 @@ resource "azurerm_resource_group" "example" {
 }
 
 resource "random_string" "random" {
-  length           = 14
+  length           = 21
   special          = false
   override_special = "/@£$"
-  upper            = false
+  upper            = true
 }
 
 resource "azurerm_mysql_server" "example" {
