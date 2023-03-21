@@ -3,8 +3,18 @@ resource "azurerm_resource_group" "example" {
   location = "West Europe"
 }
 
-output rg_info  {
-    value = azurerm_resource_group.example
+output rg_id  {
+    value = azurerm_resource_group.example.id
+}
+
+
+output rg_name  {
+    value = azurerm_resource_group.example.name
+}
+
+
+output rg_location  {
+    value = azurerm_resource_group.example.location
 }
 
 
