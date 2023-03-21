@@ -70,7 +70,11 @@ resource "azurerm_linux_virtual_machine_scale_set" "example" {
 }
 
 
-output ss_info {
-    value = azurerm_linux_virtual_machine_scale_set.example
-    sensitive = true
+output ss_id {
+    value = azurerm_linux_virtual_machine_scale_set.id
+}
+
+
+output ss_unique_id {
+    value = azurerm_linux_virtual_machine_scale_set.unique_id
 }
