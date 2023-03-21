@@ -1,8 +1,12 @@
-
 resource "azurerm_resource_group" "example" {
   name     = "example-resources-ss"
   location = "West Europe"
 }
+
+output rg_info  {
+    value = azurerm_resource_group.example
+}
+
 
 resource "azurerm_virtual_network" "example" {
   name                = "example-network"
