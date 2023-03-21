@@ -78,3 +78,7 @@ output ss_id {
 output ss_unique_id {
     value = azurerm_linux_virtual_machine_scale_set.example.unique_id
 }
+
+# output  ANYNAME { 
+#     value = RESOURCE_TYPE.TERRAFORM_RESOURCE_NAME.filter
+# }
