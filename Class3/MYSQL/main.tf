@@ -40,6 +40,6 @@ resource "azurerm_mysql_server" "example" {
 
 
 
-output info {
-  value = azurerm_mysql_server.example
+output address {
+  value = azurerm_mysql_server.example.fqdn
 }
