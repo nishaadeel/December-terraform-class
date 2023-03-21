@@ -43,3 +43,8 @@ resource "azurerm_mysql_server" "example" {
 output address {
   value = azurerm_mysql_server.example.fqdn
 }
+
+
+output user {
+  value = "mysqladminun@example-mysqlserver-2-${random_string.random.result}"
+}
