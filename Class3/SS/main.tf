@@ -71,10 +71,10 @@ resource "azurerm_linux_virtual_machine_scale_set" "example" {
 
 
 output ss_id {
-    value = azurerm_linux_virtual_machine_scale_set.id
+    value = azurerm_linux_virtual_machine_scale_set.example.id
 }
 
 
 output ss_unique_id {
-    value = azurerm_linux_virtual_machine_scale_set.unique_id
+    value = azurerm_linux_virtual_machine_scale_set.example.unique_id
 }
