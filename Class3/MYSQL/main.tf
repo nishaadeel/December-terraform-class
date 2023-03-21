@@ -4,18 +4,28 @@ resource "azurerm_resource_group" "example" {
 }
 
 resource "random_string" "random" {
-  length           = 21
+  length           = 14
   special          = false
   override_special = "/@£$"
-  upper            = true
+  upper            = false
 }
+
+
+
+resource "random_password" "password" {
+	length = 30
+	special = false
+	override_special = "_%@"
+}
+
+
 
 resource "azurerm_mysql_server" "example" {
   name                              = "example-mysqlserver-2-${random_string.random.result}"
   location                          = azurerm_resource_group.example.location
   resource_group_name               = azurerm_resource_group.example.name
   administrator_login               = "mysqladminun"
-  administrator_login_password      = random_string.random.result
+  administrator_login_password      = random_password.password.result
   sku_name                          = "B_Gen5_2"
   storage_mb                        = 5120
   version                           = "5.7"
