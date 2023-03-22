@@ -3,11 +3,9 @@ data "google_billing_account" "acct" {
   open         = true
 }
 
-
 output  billing_account_name {
     value = data.google_billing_account.acct.name
 }
-
 
 resource "random_password" "password" {
 	length = 16
@@ -16,7 +14,6 @@ resource "random_password" "password" {
 	lower = true
 	upper = false
 }
-
 
 resource "google_project" "testproject" {
 	name = "testproject"
