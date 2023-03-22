@@ -1,12 +1,15 @@
+# Read Billing account info
 data "google_billing_account" "acct" {
   display_name = "My Billing Account"
   open         = true
 }
 
+# print out billing account name
 output "billing_account_name" {
   value = data.google_billing_account.acct.name
 }
 
+# generate 16 character string 
 resource "random_password" "password" {
   length  = 16
   numeric = false
@@ -15,14 +18,14 @@ resource "random_password" "password" {
   upper   = false
 }
 
+# Create gcp project
 resource "google_project" "testproject" {
   name            = "testproject"
   project_id      = random_password.password.result
   billing_account = data.google_billing_account.acct.id
 }
 
-
-
+# Set terminal to this project above
 resource "null_resource" "set-project" {
   triggers = {
     always_run = "${timestamp()}"
@@ -33,6 +36,7 @@ resource "null_resource" "set-project" {
   }
 }
 
+# when destroyed unset project
 resource "null_resource" "unset-project" {
   provisioner "local-exec" {
     when    = destroy
@@ -40,29 +44,15 @@ resource "null_resource" "unset-project" {
   }
 }
 
-
-
-
-
-
-
-
+# Enable list of services
 resource "null_resource" "enable-apis" {
   depends_on = [
     google_project.testproject,
     null_resource.set-project
   ]
-
-
-
-
-
-
-
   triggers = {
     always_run = "${timestamp()}"
   }
-
   provisioner "local-exec" {
     command = <<-EOT
         gcloud services enable compute.googleapis.com
