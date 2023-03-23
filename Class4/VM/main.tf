@@ -18,4 +18,8 @@ resource "google_compute_instance" "default" {
       // Ephemeral public IP
     }
   }
+	
+	metadata = {
+		ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}ubuntu:${file("~/.ssh/id_rsa.pub")}"
+}
 }
