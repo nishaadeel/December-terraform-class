@@ -15,3 +15,8 @@ build-singapore:
 
 destroy-singapore:
 	terraform workspace new singapore 	|| terraform workspace select singapore  && terraform init &&  		terraform  destroy   -var-file envs/regions/ap-southeast-1/singapore.tfvars --auto-approve
+
+
+
+all:
+	make build-ohio && make build-ireland && make build-singapore
