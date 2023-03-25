@@ -58,3 +58,7 @@ resource "aws_subnet" "subnet3" {
   vpc_id  = aws_vpc.main.id
   cidr_block = "10.0.3.0/24"
 }
+
+output azs {
+  value = data.aws_availability_zones.available.names
+}
