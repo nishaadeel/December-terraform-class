@@ -13,6 +13,7 @@ resource "aws_key_pair" "state-demo2" {
 resource "aws_security_group" "important" {
   name        = "important"
   description = "Allow TLS inbound traffic"
+  vpc_id = aws_vpc.main.id
 
   ingress {
     description      = "TLS from VPC"
