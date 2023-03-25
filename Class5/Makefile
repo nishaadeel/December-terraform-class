@@ -1,5 +1,5 @@
 build-ohio:
-	terraform  apply   -var-file envs/regions/us-east-2/ohio.tfvars --auto-approve
+	terraform workspace new ohio || terraform workspace select ohio  && terraform init &&   terraform  apply   -var-file envs/regions/us-east-2/ohio.tfvars --auto-approve
 
 destroy-ohio:
 	terraform  destroy   -var-file envs/regions/us-east-2/ohio.tfvars --auto-approve
