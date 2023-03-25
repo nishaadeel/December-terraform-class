@@ -20,3 +20,7 @@ destroy-singapore:
 
 all:
 	make build-ohio && make build-ireland && make build-singapore
+
+
+destroy-all:
+	make destroy-ohio && make destroy-ireland && make destroy-singapore
