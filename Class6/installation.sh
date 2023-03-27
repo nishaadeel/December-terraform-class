@@ -8,3 +8,8 @@ sudo yum -y install packer
 packer version
 
 # bash installation.sh 
+
+
+
+# learn
+# https://developer.hashicorp.com/packer/tutorials
