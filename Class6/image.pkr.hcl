@@ -17,12 +17,15 @@ source "amazon-ebs" "image" {
 	instance_type        = "t2.micro"
 	ssh_username         = "ec2-user"
 	region               = "us-east-2"
-	ami_regions = [
-		"us-east-1",
-		"eu-west-1",
-		"ap-southeast-1",
-	] 
-	source_ami = "ami-02f97949d306b597a"
+	// ami_users 			 = [
+	// 	"128079982705"
+	// ]
+	// ami_regions = [
+	// 	"us-east-1",
+	// 	"eu-west-1",
+	// 	"ap-southeast-1",
+	// ] 
+	source_ami = "ami-0e5b9b3a092cae539"
 	run_tags = {
 		Name = "Packer instance for golden-image"
 	}
