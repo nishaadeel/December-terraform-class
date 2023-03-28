@@ -1,3 +1,4 @@
+# Download plugins
 packer {
 	required_plugins {
 		amazon = {
@@ -8,7 +9,7 @@ packer {
 }
 
 
-
+# Prepare AMI
 source "amazon-ebs" "image" {
 	ami_name             = "golden-image {{timestamp}}"
 	ssh_private_key_file = "/home/ec2-user/.ssh/id_rsa"
@@ -24,7 +25,7 @@ source "amazon-ebs" "image" {
 
 
 
-
+# Build Machine
 build {
 	sources = [
 		"source.amazon-ebs.image"
