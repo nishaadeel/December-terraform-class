@@ -43,7 +43,7 @@ build {
 			"echo Installing Telnet",
             "sudo yum update -y",
 			"sudo yum install telnet -y",
-            "sudo useradd ansible"
+            "sudo useradd ansible",
 			"sudo yum install httpd -y",
 			"sudo yum install php php-mysql -y",
 			"sudo systemctl restart httpd",
