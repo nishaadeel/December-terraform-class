@@ -6,9 +6,6 @@ output "AZ" {
 	value = data.aws_availability_zones.all.names
 }
 
-
-
-
 resource "aws_default_subnet" "default_az1" {
 	availability_zone = data.aws_availability_zones.all.names[0]
 	tags = {
@@ -28,10 +25,15 @@ resource "aws_default_subnet" "default_az3" {
 	}
 }
 
-# output "subnet1" {
-# 	value = [ 
-# 		aws_default_subnet.default_az1.id,
-# 		aws_default_subnet.default_az2.id,
-# 		aws_default_subnet.default_az3.id,
-# 	]
-# }
+resource "aws_db_subnet_group" "default" {
+  name       = "class7"
+  subnet_ids = [
+    aws_default_subnet.default_az1.id,
+    aws_default_subnet.default_az2.id,
+    aws_default_subnet.default_az3.id
+  ]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
