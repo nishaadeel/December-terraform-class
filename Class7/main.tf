@@ -73,3 +73,20 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name  = aws_db_subnet_group.default.name
   publicly_accessible   = true
 }
+
+
+data "aws_route53_zone" "selected" {
+  name         = var.domain
+  private_zone = false
+}
+
+resource "aws_route53_record" "db" {
+  zone_id = data.aws_route53_zone.selected.zone_id
+  name    = "wordpressdb.${var.domain}"
+  type    = "CNAME"
+  ttl     = 300
+  records = [
+    aws_db_instance.default.address
+  ]
+}
+variable domain {}
