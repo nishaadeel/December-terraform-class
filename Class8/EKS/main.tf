@@ -7,17 +7,7 @@ module "eks" {
 
   cluster_endpoint_public_access  = true
 
-  cluster_addons = {
-    coredns = {
-      most_recent = true
-    }
-    kube-proxy = {
-      most_recent = true
-    }
-    vpc-cni = {
-      most_recent = true
-    }
-  }
+  cluster_addons = { }
 
   vpc_id                   = var.vpc_id
   subnet_ids               = var.subnet_ids
